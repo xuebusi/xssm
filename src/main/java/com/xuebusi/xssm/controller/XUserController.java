@@ -21,7 +21,7 @@ public class XUserController {
     @RequestMapping(value = "/{id}")
     @ResponseBody
     public XUser list(@PathVariable("id") Integer id) {
-        return userService.selectByExample(id);
+        return userService.selectByPrimaryKey(id);
     }
 
 }
