@@ -8,6 +8,6 @@ SpringMVC + Spring + Mybatis整合工程
 在com.xuebusi.xssm.mapper包下会生成一个Mapper接口文件和一个Mapper.xml配置文件。
 在com.xuebusi.xssm.pojo包下会生成一个实体类和一个Example类。
 
-hello world
+Hello Git GUI!
 
 
