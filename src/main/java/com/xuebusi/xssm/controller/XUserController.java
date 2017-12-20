@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * Created by SYJ on 2017/12/18.
  */
@@ -18,10 +20,40 @@ public class XUserController {
     @Autowired
     private XUserService userService;
 
+    /**
+     * 根据id查询用户
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/{id}")
     @ResponseBody
-    public XUser list(@PathVariable("id") Integer id) {
+    public XUser get(@PathVariable("id") Integer id) {
         return userService.selectByPrimaryKey(id);
+    }
+
+    /**
+     * 查询所有用户
+     * @return
+     */
+    @RequestMapping(value = "/list")
+    @ResponseBody
+    public List<XUser> list() {
+        return userService.findAll();
+    }
+
+    /**
+     * 添加用户
+     * @return
+     */
+    @RequestMapping(value = "/add")
+    @ResponseBody
+    public int insert() {
+        XUser user = new XUser();
+        user.setName("王五");
+        user.setAge(25);
+        user.setPhone("13910108899");
+        user.setAddress("重庆");
+        return userService.insert(user);
     }
 
 }

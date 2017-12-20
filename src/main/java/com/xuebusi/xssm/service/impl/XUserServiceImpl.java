@@ -6,6 +6,8 @@ import com.xuebusi.xssm.service.XUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by SYJ on 2017/12/18.
  */
@@ -13,11 +15,21 @@ import org.springframework.stereotype.Service;
 public class XUserServiceImpl implements XUserService {
 
     @Autowired
-    private XUserMapper xUserMapper;
+    private XUserMapper userMapper;
 
     @Override
     public XUser selectByPrimaryKey(Integer id) {
-        XUser user = xUserMapper.selectByPrimaryKey(id);
+        XUser user = userMapper.selectByPrimaryKey(id);
         return user;
+    }
+
+    @Override
+    public int insert(XUser user) {
+        return userMapper.insert(user);
+    }
+
+    @Override
+    public List<XUser> findAll() {
+        return userMapper.selectByExample(null);
     }
 }
