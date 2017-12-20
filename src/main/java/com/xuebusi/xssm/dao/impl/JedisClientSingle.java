@@ -2,7 +2,6 @@ package com.xuebusi.xssm.dao.impl;
 
 import com.xuebusi.xssm.dao.JedisClient;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 /**
