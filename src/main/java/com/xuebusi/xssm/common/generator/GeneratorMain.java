@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * mybatis逆向工程
+ * 根据配置生成mybatis的实体类、接口以及映射Mapper.xml文件
  */
 public class GeneratorMain {
 
