@@ -17,17 +17,31 @@ public class XUserServiceImpl implements XUserService {
     @Autowired
     private XUserMapper userMapper;
 
+    /**
+     * 根据id查询用户
+     * @param id
+     * @return
+     */
     @Override
     public XUser selectByPrimaryKey(Integer id) {
         XUser user = userMapper.selectByPrimaryKey(id);
         return user;
     }
 
+    /**
+     * 添加用户
+     * @param user
+     * @return
+     */
     @Override
     public int insert(XUser user) {
         return userMapper.insert(user);
     }
 
+    /**
+     * 查询所有用户
+     * @return
+     */
     @Override
     public List<XUser> findAll() {
         return userMapper.selectByExample(null);
