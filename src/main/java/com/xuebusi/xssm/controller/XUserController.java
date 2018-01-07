@@ -52,7 +52,7 @@ public class XUserController {
     @RequestMapping(value = "/list2")
     @ResponseBody
     public XResult list(@RequestParam("page") int pageNum, @RequestParam("rows") int pageSize) {
-        return userService.list(pageNum, pageSize);
+        return userService.findPage(pageNum, pageSize);
     }
 
     /**

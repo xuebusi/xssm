@@ -4,7 +4,13 @@ import java.util.List;
 
 public class XResult {
 
+    /**
+     * 总条数
+     */
     private long total;
+    /**
+     * 分页数据
+     */
     private List<?> rows;
 
     public long getTotal() {

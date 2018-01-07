@@ -52,7 +52,7 @@ public class XUserServiceImpl implements XUserService {
     }
 
     @Override
-    public XResult list(int pageNum, int pageSize) {
+    public XResult findPage(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         XUserExample example = new XUserExample();
         List<XUser> userList = userMapper.selectByExample(example);

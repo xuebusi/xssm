@@ -16,5 +16,5 @@ public interface XUserService {
 
     List<XUser> findAll();
 
-    XResult list(int pageNum, int pageSize);
+    XResult findPage(int pageNum, int pageSize);
 }
