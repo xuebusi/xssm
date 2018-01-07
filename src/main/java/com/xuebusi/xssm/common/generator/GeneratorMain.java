@@ -12,12 +12,14 @@ import java.util.List;
 /**
  * mybatis逆向工程
  * 根据配置生成mybatis的实体类、接口以及映射Mapper.xml文件
+ *
+ * Created by 学布斯 on 2017/12/18.
  */
 public class GeneratorMain {
 
     public void generator() throws Exception {
 
-        List<String> warnings = new ArrayList<String>();
+        List<String> warnings = new ArrayList<>();
         boolean overwrite = true;
         //指定 逆向工程配置文件
         File configFile = new File("src/main/java/com/xuebusi/xssm/common/generator/generatorConfig.xml");

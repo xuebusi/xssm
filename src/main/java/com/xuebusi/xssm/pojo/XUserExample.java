@@ -3,6 +3,9 @@ package com.xuebusi.xssm.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by 学布斯 on 2017/12/18.
+ */
 public class XUserExample {
     protected String orderByClause;
 

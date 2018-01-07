@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import redis.clients.jedis.JedisCluster;
 /**
  * jedis客户端的集群版实现
+ * Created by 学布斯 on 2017/12/18.
  */
 public class JedisClientCluster implements JedisClient {
 

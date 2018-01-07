@@ -6,6 +6,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 /**
  * jedis客户端的单机版实现
+ * Created by 学布斯 on 2017/12/18.
  */
 public class JedisClientSingle implements JedisClient {
 	

@@ -5,6 +5,9 @@ import com.xuebusi.xssm.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Created by 学布斯 on 2017/12/18.
+ */
 @Service
 public class RedisServiceImpl implements RedisService {
 

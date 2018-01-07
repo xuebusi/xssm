@@ -3,6 +3,8 @@ package com.xuebusi.xssm.dao;
 /**
  * 定义一个redis的操作接口,底层使用jedis.
  * 它有两种实现:一种是单机版的jedis客户端,一种是集群版的jedis客户端.
+ *
+ * Created by 学布斯 on 2017/12/18.
  */
 public interface JedisClient {
 

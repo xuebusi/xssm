@@ -5,6 +5,9 @@ import com.xuebusi.xssm.pojo.XUserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+/**
+ * Created by 学布斯 on 2017/12/18.
+ */
 public interface XUserMapper {
     int countByExample(XUserExample example);
 

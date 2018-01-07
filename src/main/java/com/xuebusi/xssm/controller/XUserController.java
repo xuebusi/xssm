@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 /**
- * Created by SYJ on 2017/12/18.
+ * Created by 学布斯 on 2017/12/18.
  */
 @Controller
 @RequestMapping(value = "/user")

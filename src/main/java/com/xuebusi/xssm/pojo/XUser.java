@@ -1,5 +1,8 @@
 package com.xuebusi.xssm.pojo;
 
+/**
+ * Created by 学布斯 on 2017/12/18.
+ */
 public class XUser {
     private Integer id;
 

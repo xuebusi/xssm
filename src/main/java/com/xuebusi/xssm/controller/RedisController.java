@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.UUID;
 
 /**
- * redis测试类
+ * Created by 学布斯 on 2017/12/18.
  */
 @Controller
 @RequestMapping("/redis")
