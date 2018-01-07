@@ -1,12 +1,14 @@
 package com.xuebusi.xssm.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.xuebusi.xssm.common.XResult;
 import com.xuebusi.xssm.pojo.XUser;
+import com.xuebusi.xssm.pojo.XUserExample;
 import com.xuebusi.xssm.service.XUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,6 +41,18 @@ public class XUserController {
     @ResponseBody
     public List<XUser> list() {
         return userService.findAll();
+    }
+
+    /**
+     * 分页查询
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @RequestMapping(value = "/list2")
+    @ResponseBody
+    public XResult list(@RequestParam("page") int pageNum, @RequestParam("rows") int pageSize) {
+        return userService.list(pageNum, pageSize);
     }
 
     /**

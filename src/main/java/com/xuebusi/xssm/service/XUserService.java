@@ -1,6 +1,7 @@
 package com.xuebusi.xssm.service;
 
 
+import com.xuebusi.xssm.common.XResult;
 import com.xuebusi.xssm.pojo.XUser;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface XUserService {
     int insert(XUser user);
 
     List<XUser> findAll();
+
+    XResult list(int pageNum, int pageSize);
 }
