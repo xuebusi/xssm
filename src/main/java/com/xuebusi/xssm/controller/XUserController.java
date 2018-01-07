@@ -37,9 +37,9 @@ public class XUserController {
      * 查询所有用户
      * @return
      */
-    @RequestMapping(value = "/list")
+    @RequestMapping
     @ResponseBody
-    public List<XUser> list() {
+    public List<XUser> findAll() {
         return userService.findAll();
     }
 
@@ -49,9 +49,9 @@ public class XUserController {
      * @param pageSize
      * @return
      */
-    @RequestMapping(value = "/list2")
+    @RequestMapping
     @ResponseBody
-    public XResult list(@RequestParam("page") int pageNum, @RequestParam("rows") int pageSize) {
+    public XResult findPage(@RequestParam("page") int pageNum, @RequestParam("rows") int pageSize) {
         return userService.findPage(pageNum, pageSize);
     }
 
