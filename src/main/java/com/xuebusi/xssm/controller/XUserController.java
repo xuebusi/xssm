@@ -1,7 +1,6 @@
 package com.xuebusi.xssm.controller;
 
 import com.xuebusi.xssm.common.PageResult;
-import com.xuebusi.xssm.common.ViewHint;
 import com.xuebusi.xssm.pojo.XUser;
 import com.xuebusi.xssm.service.XUserService;
 import org.springframework.beans.factory.annotation.Autowired;
