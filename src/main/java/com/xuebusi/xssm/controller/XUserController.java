@@ -68,20 +68,4 @@ public class XUserController extends BaseController {
         userService.insert(user);
         return success();
     }
-
-    /**
-     * 添加用户
-     * @return
-     */
-    @RequestMapping(value = "/testAdd")
-    @ResponseBody
-    public int testAdd() {
-        XUser user = new XUser();
-        user.setName("王五");
-        user.setAge(25);
-        user.setPhone("13910108899");
-        user.setAddress("重庆");
-        return userService.insert(user);
-    }
-
 }
