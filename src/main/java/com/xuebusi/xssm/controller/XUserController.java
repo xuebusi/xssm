@@ -1,6 +1,5 @@
 package com.xuebusi.xssm.controller;
 
-import com.xuebusi.xssm.common.JsonResult;
 import com.xuebusi.xssm.common.PageResult;
 import com.xuebusi.xssm.common.ViewHint;
 import com.xuebusi.xssm.pojo.XUser;
@@ -65,10 +64,10 @@ public class XUserController extends BaseController {
     public String add(XUser user) {
         String beanValidator = beanValidator(user);
         if (!StringUtils.isEmpty(beanValidator)) {
-            return JsonResult.error(ViewHint.PARAM_ERROR, beanValidator);
+            return error(ViewHint.PARAM_ERROR, beanValidator);
         }
         userService.insert(user);
-        return JsonResult.success(ViewHint.SUCCESS, user);
+        return success();
     }
 
     /**

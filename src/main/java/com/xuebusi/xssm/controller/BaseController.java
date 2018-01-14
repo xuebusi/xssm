@@ -1,6 +1,8 @@
 package com.xuebusi.xssm.controller;
 
 import com.xuebusi.xssm.common.BeanValidators;
+import com.xuebusi.xssm.common.JsonResult;
+import com.xuebusi.xssm.common.ViewHint;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintViolationException;
@@ -32,4 +34,36 @@ public abstract class BaseController {
 		}
 		return null;
 	}
+	public String success() {
+		return JsonResult.success(ViewHint.SUCCESS);
+	}
+
+	public String success(Object data) {
+		return JsonResult.success(ViewHint.SUCCESS, data);
+	}
+
+	public String success(ViewHint viewHint) {
+		return JsonResult.success(viewHint);
+	}
+
+	public String success(ViewHint viewHint, Object data) {
+		return JsonResult.success(viewHint, data);
+	}
+
+	public String error() {
+		return JsonResult.error(ViewHint.ERROR);
+	}
+
+	public String error(Object data) {
+		return JsonResult.error(ViewHint.ERROR, data);
+	}
+
+	public String error(ViewHint viewHint) {
+		return JsonResult.error(viewHint);
+	}
+
+	public String error(ViewHint viewHint, Object data) {
+		return JsonResult.error(viewHint, data);
+	}
+
 }
