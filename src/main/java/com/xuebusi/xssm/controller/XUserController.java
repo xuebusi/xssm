@@ -1,9 +1,7 @@
 package com.xuebusi.xssm.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.xuebusi.xssm.common.JsonResult;
 import com.xuebusi.xssm.common.PageResult;
-import com.xuebusi.xssm.common.Result;
 import com.xuebusi.xssm.common.ViewHint;
 import com.xuebusi.xssm.pojo.XUser;
 import com.xuebusi.xssm.service.XUserService;
@@ -57,6 +55,11 @@ public class XUserController extends BaseController {
         return userService.findPage(pageNum, pageSize);
     }
 
+    /**
+     * 添加用户
+     * @param user
+     * @return
+     */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public String add(XUser user) {

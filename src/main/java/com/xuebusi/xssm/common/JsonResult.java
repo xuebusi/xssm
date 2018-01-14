@@ -2,6 +2,11 @@ package com.xuebusi.xssm.common;
 
 import com.alibaba.fastjson.JSON;
 
+/**
+ * 返回json
+ * @author 学布斯
+ * @version 2018-1-14
+ */
 public class JsonResult {
 
     public JsonResult() {

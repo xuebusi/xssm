@@ -1,5 +1,10 @@
 package com.xuebusi.xssm.common;
 
+/**
+ * 返回结果体
+ * @author 学布斯
+ * @version 2018-1-14
+ */
 public class Result<T> {
 
     private int code;

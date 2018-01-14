@@ -7,8 +7,8 @@ import java.util.*;
 
 /**
  * JSR303 Validator(Hibernate Validator)工具类.
- * 
- * ConstraintViolation中包含propertyPath, message 和invalidValue等信息.
+ * @author 学布斯
+ * @version 2018-1-14
  */
 public class BeanValidators {
 

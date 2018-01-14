@@ -8,8 +8,8 @@ import javax.validation.Validator;
 
 /**
  * 控制器支持类
- * @author ThinkGem
- * @version 2013-3-23
+ * @author 学布斯
+ * @version 2018-1-14
  */
 public abstract class BaseController {
 	
