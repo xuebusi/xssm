@@ -19,15 +19,15 @@ public class JsonResult {
         return JSON.toJSONString(new Result<>().success(viewHint, data));
     }
 
-    public static String fail() {
-        return JSON.toJSONString(new Result<>().fail(ViewHint.FAIL));
+    public static String error() {
+        return JSON.toJSONString(new Result<>().error(ViewHint.ERROR));
     }
 
-    public static String fail(Object data) {
-        return JSON.toJSONString(new Result<>().fail(ViewHint.FAIL, data));
+    public static String error(Object data) {
+        return JSON.toJSONString(new Result<>().error(ViewHint.ERROR, data));
     }
 
-    public static String fail(ViewHint viewHint, Object data) {
-        return JSON.toJSONString(new Result<>().fail(viewHint, data));
+    public static String error(ViewHint viewHint, Object data) {
+        return JSON.toJSONString(new Result<>().error(viewHint, data));
     }
 }

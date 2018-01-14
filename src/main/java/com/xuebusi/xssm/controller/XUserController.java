@@ -62,7 +62,7 @@ public class XUserController extends BaseController {
     public String add(XUser user) {
         String beanValidator = beanValidator(user);
         if (!StringUtils.isEmpty(beanValidator)) {
-            return JsonResult.fail(ViewHint.PARAM_ERROR, beanValidator);
+            return JsonResult.error(ViewHint.PARAM_ERROR, beanValidator);
         }
         userService.insert(user);
         return JsonResult.success(ViewHint.SUCCESS, user);

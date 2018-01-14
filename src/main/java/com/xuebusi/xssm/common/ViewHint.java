@@ -3,7 +3,7 @@ package com.xuebusi.xssm.common;
 public enum ViewHint {
 
     SUCCESS(200, "操作成功"),
-    FAIL(500, "操作失败"),
+    ERROR(500, "操作失败"),
     PARAM_ERROR(400, "参数有误");
 
     private int code;

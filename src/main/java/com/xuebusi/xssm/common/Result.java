@@ -28,16 +28,16 @@ public class Result<T> {
     }
 
     public Result<T> success() {
-        this.code = 200;
+        this.code = ViewHint.SUCCESS.getCode();
         this.success = true;
-        this.message = "操作成功";
+        this.message = ViewHint.SUCCESS.getMessage();
         return this;
     }
 
     public Result<T> success(T data) {
-        this.code = 200;
+        this.code = ViewHint.SUCCESS.getCode();
         this.success = true;
-        this.message = "操作成功";
+        this.message = ViewHint.SUCCESS.getMessage();
         this.data = data;
         return this;
     }
@@ -57,28 +57,28 @@ public class Result<T> {
         return this;
     }
 
-    public Result<T> fail() {
-        this.code = 500;
-        this.message = "操作失败";
+    public Result<T> error() {
+        this.code = ViewHint.ERROR.getCode();
+        this.message = ViewHint.ERROR.getMessage();
         return this;
     }
 
-    public Result<T> fail(ViewHint viewHint) {
+    public Result<T> error(ViewHint viewHint) {
         this.code = viewHint.getCode();
         this.message = viewHint.getMessage();
         return this;
     }
 
-    public Result<T> fail(ViewHint viewHint, T data) {
+    public Result<T> error(ViewHint viewHint, T data) {
         this.code = viewHint.getCode();
         this.message = viewHint.getMessage();
         this.data = data;
         return this;
     }
 
-    public Result<T> fail(T data) {
-        this.code = 500;
-        this.message = "操作失败";
+    public Result<T> error(T data) {
+        this.code = ViewHint.ERROR.getCode();
+        this.message = ViewHint.ERROR.getMessage();
         this.data = data;
         return this;
     }
