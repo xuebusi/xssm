@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by 学布斯 on 2017/12/18.
  */
-public class XResult {
+public class PageResult {
 
     /**
      * 总条数
@@ -34,7 +34,7 @@ public class XResult {
 
     @Override
     public String toString() {
-        return "XResult{" +
+        return "PageResult{" +
                 "total=" + total +
                 ", rows=" + rows +
                 '}';

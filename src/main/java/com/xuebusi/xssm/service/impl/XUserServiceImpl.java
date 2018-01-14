@@ -2,7 +2,7 @@ package com.xuebusi.xssm.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.xuebusi.xssm.common.XResult;
+import com.xuebusi.xssm.common.PageResult;
 import com.xuebusi.xssm.mapper.XUserMapper;
 import com.xuebusi.xssm.pojo.XUser;
 import com.xuebusi.xssm.pojo.XUserExample;
@@ -52,12 +52,12 @@ public class XUserServiceImpl implements XUserService {
     }
 
     @Override
-    public XResult findPage(int pageNum, int pageSize) {
+    public PageResult findPage(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         XUserExample example = new XUserExample();
         List<XUser> userList = userMapper.selectByExample(example);
         PageInfo<XUser> pageInfo = new PageInfo<>(userList);
-        XResult result = new XResult();
+        PageResult result = new PageResult();
         result.setTotal(pageInfo.getTotal());
         result.setRows(pageInfo.getList());
         return result;

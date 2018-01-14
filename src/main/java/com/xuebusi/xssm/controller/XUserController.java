@@ -1,14 +1,16 @@
 package com.xuebusi.xssm.controller;
 
-import com.xuebusi.xssm.common.XResult;
+import com.alibaba.fastjson.JSON;
+import com.xuebusi.xssm.common.JsonResult;
+import com.xuebusi.xssm.common.PageResult;
+import com.xuebusi.xssm.common.Result;
+import com.xuebusi.xssm.common.ViewHint;
 import com.xuebusi.xssm.pojo.XUser;
 import com.xuebusi.xssm.service.XUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,7 +19,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "/user")
-public class XUserController {
+public class XUserController extends BaseController {
 
     @Autowired
     private XUserService userService;
@@ -51,17 +53,28 @@ public class XUserController {
      */
     @RequestMapping(value = "/findPage")
     @ResponseBody
-    public XResult findPage(@RequestParam("page") int pageNum, @RequestParam("rows") int pageSize) {
+    public PageResult findPage(@RequestParam("page") int pageNum, @RequestParam("rows") int pageSize) {
         return userService.findPage(pageNum, pageSize);
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @ResponseBody
+    public String add(XUser user) {
+        String beanValidator = beanValidator(user);
+        if (!StringUtils.isEmpty(beanValidator)) {
+            return JsonResult.fail(ViewHint.PARAM_ERROR, beanValidator);
+        }
+        userService.insert(user);
+        return JsonResult.success(ViewHint.SUCCESS, user);
     }
 
     /**
      * 添加用户
      * @return
      */
-    @RequestMapping(value = "/add")
+    @RequestMapping(value = "/testAdd")
     @ResponseBody
-    public int insert() {
+    public int testAdd() {
         XUser user = new XUser();
         user.setName("王五");
         user.setAge(25);

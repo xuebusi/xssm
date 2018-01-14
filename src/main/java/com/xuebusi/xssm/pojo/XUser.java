@@ -1,9 +1,13 @@
 package com.xuebusi.xssm.pojo;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import java.io.Serializable;
+
 /**
  * Created by 学布斯 on 2017/12/18.
  */
-public class XUser {
+public class XUser implements Serializable{
     private Integer id;
 
     private String name;
@@ -22,6 +26,7 @@ public class XUser {
         this.id = id;
     }
 
+    @NotBlank(message="用户名不能为空")
     public String getName() {
         return name;
     }
@@ -30,6 +35,7 @@ public class XUser {
         this.name = name == null ? null : name.trim();
     }
 
+    @NotBlank(message="地址不能为空")
     public String getAddress() {
         return address;
     }
