@@ -35,7 +35,7 @@ public abstract class BaseController {
 		return null;
 	}
 	public String success() {
-		return JsonResult.success(ViewHint.SUCCESS);
+		return JsonResult.success();
 	}
 
 	public String success(Object data) {
