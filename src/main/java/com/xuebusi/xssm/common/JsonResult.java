@@ -20,11 +20,11 @@ public class JsonResult {
     }
 
     public static String fail() {
-        return JSON.toJSONString(new Result<>().success(ViewHint.FAIL));
+        return JSON.toJSONString(new Result<>().fail(ViewHint.FAIL));
     }
 
     public static String fail(Object data) {
-        return JSON.toJSONString(new Result<>().success(ViewHint.FAIL, data));
+        return JSON.toJSONString(new Result<>().fail(ViewHint.FAIL, data));
     }
 
     public static String fail(ViewHint viewHint, Object data) {
