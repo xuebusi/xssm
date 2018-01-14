@@ -62,9 +62,9 @@ public class XUserController extends BaseController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public String add(XUser user) {
-        String beanValidator = beanValidator(user);
-        if (!StringUtils.isEmpty(beanValidator)) {
-            return error(ViewHint.PARAM_ERROR, beanValidator);
+        String fields = beanValidator(user);
+        if (!StringUtils.isEmpty(fields)) {
+            return paramError(fields);
         }
         userService.insert(user);
         return success();

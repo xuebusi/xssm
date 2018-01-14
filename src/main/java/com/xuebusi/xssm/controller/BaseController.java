@@ -66,4 +66,8 @@ public abstract class BaseController {
 		return JsonResult.error(viewHint, data);
 	}
 
+    public String paramError(Object data) {
+        return JsonResult.error(ViewHint.PARAM_ERROR, data);
+    }
+
 }
