@@ -22,7 +22,12 @@ public class LoginController extends BaseController {
     private static String appid = "";
     private static String secret = "";
 
-    @RequestMapping(value = "/wx")
+    /**
+     * 微信授权登陆
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/loginByWeChat")
     @ResponseBody
     public User loginByWeChat(HttpServletRequest request) {
         String code = request.getParameter("code");
@@ -37,5 +42,31 @@ public class LoginController extends BaseController {
         User user = userResult.getResult();
         System.out.println(JSON.toJSONString(user));
         return user;
+    }
+
+    /**
+     * QQ授权登陆
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/loginByQQ")
+    @ResponseBody
+    public User loginByQQ(HttpServletRequest request) {
+
+
+        return null;
+    }
+
+    /**
+     * 微博授权登陆
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/loginByWeiBo")
+    @ResponseBody
+    public User loginByWeiBo(HttpServletRequest request) {
+
+
+        return null;
     }
 }
