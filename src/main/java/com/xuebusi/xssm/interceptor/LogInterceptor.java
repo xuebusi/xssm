@@ -8,6 +8,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 日志拦截器
+ * @Author: syj
+ * @CreateDate: 2018/1/20 16:48
+ */
 public class LogInterceptor implements HandlerInterceptor {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
