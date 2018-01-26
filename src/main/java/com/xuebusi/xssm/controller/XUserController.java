@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 学布斯 on 2017/12/18.
@@ -19,6 +21,15 @@ public class XUserController extends BaseController {
 
     @Autowired
     private XUserService userService;
+
+    @RequestMapping(value = "/getUserList")
+    @ResponseBody
+    public Map<String, List<XUser>> findUserList() {
+        List<XUser> userList = userService.findAll();
+        Map<String, List<XUser>> map = new HashMap<>();
+        map.put("data", userList);
+        return map;
+    }
 
     /**
      * 根据id查询用户
@@ -49,8 +60,12 @@ public class XUserController extends BaseController {
      */
     @RequestMapping(value = "/findPage")
     @ResponseBody
-    public PageResult findPage(@RequestParam("page") int pageNum, @RequestParam("rows") int pageSize) {
-        return userService.findPage(pageNum, pageSize);
+    public PageResult findPage(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+                               @RequestParam(value = "pageSize", defaultValue = "2") int pageSize,
+                               @RequestParam(value = "userName", required = false) String userName,
+                               @RequestParam(value = "phone", required = false) String phone) {
+        System.out.println(userName + ", " + phone);
+        return userService.findPage(pageNum, pageSize, userName, phone);
     }
 
     /**
