@@ -95,15 +95,14 @@ public class LoginController extends BaseController {
         //根据code获取access_token
         Result<AccessToken> accessTokenResult = weixin.getOAuth2().accessToken(code);
         AccessToken accessToken = accessTokenResult.getResult();
-        System.out.println("\naccessToken=============\n" + JSON.toJSONString(accessToken));
+        System.out.println("\naccessToken=========\n" + JSON.toJSONString(accessToken));
         //刷新 access_token
         //Result<AccessToken> newAccessTokenResult = weixin.getOAuth2().refreshAccessToken(accessToken.getRefreshToken());
         //根据access_token获取用户信息
         Result<com.belerweb.social.weixin.bean.User> userResult = weixin.getUser().snsapiUserInfo(accessToken.getToken(), accessToken.getOpenId());
         com.belerweb.social.weixin.bean.User user = userResult.getResult();
-        System.out.println("\nuser============\n" + JSON.toJSONString(user));
+        System.out.println("\nuser=========\n" + JSON.toJSONString(user));
         model.addAttribute("user", user);
-        System.out.println("\n-----------------------------------------------------------\n");
         return "success";
     }
 
