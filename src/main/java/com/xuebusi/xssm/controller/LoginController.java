@@ -6,11 +6,15 @@ import com.belerweb.social.qq.connect.api.QQConnect;
 import com.belerweb.social.weibo.api.Weibo;
 import com.belerweb.social.weixin.api.Weixin;
 import com.belerweb.social.weixin.bean.AccessToken;
+import com.belerweb.social.weixin.bean.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 /**
  * @Author: syj
@@ -25,13 +29,14 @@ public class LoginController extends BaseController {
      */
     private static String weixinAppid = "";
     private static String weixinSecret = "";
+    private static String weixinRedirectUri = "";
 
     /**
      * QQ开发者账号和密码
      */
     private static String qqAppid = "";
     private static String qqSecret = "";
-    //private static String qqRedirectUri = "";
+    private static String qqRedirectUri = "";
 
     /**
      * 微博开发者账号和密码
@@ -40,26 +45,66 @@ public class LoginController extends BaseController {
     private static String weiboSecret = "";
     //private static String weiboRedirectUri = "";
 
+    @RequestMapping(value = "/getUrl")
+    @ResponseBody
+    public String getUrl() {
+        return getAuthCodeUrl(1);
+    }
+
+    private String getAuthCodeUrl(int type) {
+        String url = null;
+        if (type == 1) {
+            Weixin weixin = new Weixin(weixinAppid, weixinSecret);
+            try {
+                url = weixin.getOAuth2().authorize(weixinAppid, URLEncoder.encode(weixinRedirectUri, "UTF-8"),
+                        "code", Scope.SNSAPI_USERINFO, "xuebusi", true);
+                System.out.println(url);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        } else if (type == 2) {
+            //测试连接[来自网络] https://graph.qq.com/oauth2.0/show?which=Login&display=pc&response_type=code&client_id=101137684&redirect_uri=http%3A%2F%2Fmfxuan.free.800m.net%2Flogin.jsp&state=1&scope=get_user_info,get_info
+            QQConnect qqConnect = new QQConnect(qqAppid, qqSecret);
+            try {
+                url = qqConnect.getOAuth2().authorize(URLEncoder.encode(qqRedirectUri, "UTF-8"));
+                /*url = qqConnect.getOAuth2().authorize(qqAppid, qqRedirectUri, "code", "xuebusi",
+                    com.belerweb.social.qq.connect.bean.Scope.ALL, null, null, true);*/
+                System.out.println(url);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        } else if (type ==3) {
+
+        } else {
+
+        }
+        return url;
+    }
+
+
     /**
      * 微信授权登陆
      * @param request
      * @return
      */
     @RequestMapping(value = "/loginByWeChat")
-    @ResponseBody
-    public com.belerweb.social.weixin.bean.User loginByWeChat(HttpServletRequest request) {
+    public String loginByWeChat(HttpServletRequest request, Model model) {
         String code = request.getParameter("code");
+        System.out.println("\ncode=========\n" + code);
         Weixin weixin = new Weixin(weixinAppid, weixinSecret);
         //根据code获取access_token
         Result<AccessToken> accessTokenResult = weixin.getOAuth2().accessToken(code);
         AccessToken accessToken = accessTokenResult.getResult();
+        System.out.println("\naccessToken=============\n" + JSON.toJSONString(accessToken));
         //刷新 access_token
         //Result<AccessToken> newAccessTokenResult = weixin.getOAuth2().refreshAccessToken(accessToken.getRefreshToken());
         //根据access_token获取用户信息
         Result<com.belerweb.social.weixin.bean.User> userResult = weixin.getUser().snsapiUserInfo(accessToken.getToken(), accessToken.getOpenId());
         com.belerweb.social.weixin.bean.User user = userResult.getResult();
-        System.out.println(JSON.toJSONString(user));
-        return user;
+        System.out.println("\nuser============\n" + JSON.toJSONString(user));
+        model.addAttribute("user", user);
+        System.out.println("\n-----------------------------------------------------------\n");
+        return "success";
     }
 
     /**
