@@ -65,7 +65,7 @@ public class XUserController extends BaseController {
                                @RequestParam(value = "userName", required = false) String userName,
                                @RequestParam(value = "phone", required = false) String phone) {
         System.out.println(userName + ", " + phone);
-        return userService.findPage(pageNum, pageSize, userName, phone);
+        return userService.findPage(pageNum, pageSize);
     }
 
     /**
