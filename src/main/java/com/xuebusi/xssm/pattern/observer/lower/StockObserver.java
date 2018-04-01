@@ -1,15 +1,15 @@
 package com.xuebusi.xssm.pattern.observer.lower;
 
 /**
- * 观察者
+ * 监听者
  */
 public class StockObserver {
     /**
-     * 观察者名称
+     * 监听者名称
      */
     private String name;
     /**
-     * 被观察者
+     * 被监听者
      */
     private Secretary sub;
 
@@ -22,6 +22,6 @@ public class StockObserver {
      * 接收通知
      */
     public void update() {
-        System.out.println("通知观察者[" + this.name + "], 被观察者状态发生变化:" + sub.getAction());
+        System.out.println("通知监听者[" + this.name + "], 被监听者状态发生变化:" + sub.getAction());
     }
 }

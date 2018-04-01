@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 被观察者
+ * 被监听者
  */
 public class Secretary {
     /**
-     * 用于注册观察者
+     * 用于注册监听者
      */
     private List<StockObserver> observerList = new ArrayList<>();
     /**
-     * 记录被观察者状态
+     * 记录被监听者状态
      */
     private String action;
 
     /**
-     * 添加一个观察者
+     * 添加一个监听者
      * @param stockObserver
      */
     public void add(StockObserver stockObserver) {
@@ -25,7 +25,7 @@ public class Secretary {
     }
 
     /**
-     * 通知所有观察者
+     * 通知所有监听者
      */
     public void notifyToObserver() {
         for (StockObserver observer : observerList) {
@@ -34,7 +34,7 @@ public class Secretary {
     }
 
     /**
-     * 获取被观察者状态
+     * 获取被监听者状态
      * @return
      */
     public String getAction() {
@@ -42,7 +42,7 @@ public class Secretary {
     }
 
     /**
-     * 设置被观察者状态
+     * 设置被监听者状态
      * @param action
      */
     public void setAction(String action) {

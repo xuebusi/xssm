@@ -8,19 +8,19 @@ import java.util.Observer;
 import java.util.Random;
 
 /**
- * 拼到底活动观察者
+ * UltimaActive监听者
  */
 public class UltimaActiveObs<T> implements Observer, IActiveService {
 
     /**
-     * 记录被观察者的数据
+     * 记录被监听者的数据
      */
     private T data;
 
     /**
-     * 接收被观察者的数据，更新自己
-     * @param obs 被观察者
-     * @param data 被观察者的数据
+     * 接收被监听者的数据，更新自己
+     * @param obs 被监听者
+     * @param data 被监听者的数据
      */
     @Override
     public void update(Observable obs, Object data) {
@@ -36,7 +36,7 @@ public class UltimaActiveObs<T> implements Observer, IActiveService {
      */
     @Override
     public void modifyOrderStatus() {
-        System.out.println("拼到底活动:修改订单,被观察者状态:" + JSON.toJSONString(this.data));
+        System.out.println("UltimaActiveObs:修改订单,被监听者状态:" + JSON.toJSONString(this.data));
     }
 
     /**
@@ -44,7 +44,7 @@ public class UltimaActiveObs<T> implements Observer, IActiveService {
      */
     @Override
     public void sendGoods() {
-        System.out.println("拼到底活动:立即发货,被观察者状态:" + JSON.toJSONString(this.data));
+        System.out.println("UltimaActiveObs:立即发货,被监听者状态:" + JSON.toJSONString(this.data));
     }
 
     /**
@@ -52,7 +52,7 @@ public class UltimaActiveObs<T> implements Observer, IActiveService {
      */
     @Override
     public void refund() {
-        System.out.println("拼到底活动:申请退款,被观察者状态:" + JSON.toJSONString(this.data));
+        System.out.println("UltimaActiveObs:申请退款,被监听者状态:" + JSON.toJSONString(this.data));
     }
 
     /**
@@ -60,6 +60,6 @@ public class UltimaActiveObs<T> implements Observer, IActiveService {
      * @return
      */
     private void random() {
-        System.out.println("拼到底活动:私有方法:random():" + new Random().nextInt(Math.abs(Integer.MAX_VALUE)));
+        System.out.println("UltimaActiveObs:私有方法:random():" + new Random().nextInt(Math.abs(Integer.MAX_VALUE)));
     }
 }

@@ -4,7 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * 今天天气预报（实现java内置观察者接口）
+ * 今天天气预报（实现java内置监听者接口）
  */
 public class CurrentConditions implements Observer {
     private float mTemperatrue;

@@ -3,7 +3,7 @@ package com.xuebusi.xssm.pattern.observer.high;
 import java.util.Observable;
 
 /**
- * 气象数据（继承java内置被观察者）
+ * 气象数据（继承java内置被监听者）
  */
 public class WeathData extends Observable {
     private float mTemperatrue;
@@ -13,12 +13,12 @@ public class WeathData extends Observable {
     public void dataChange() {
         // 必须先调用 setChanged()方法，否则下面的通知不生效
         this.setChanged();
-        // 通知所有观察者
+        // 通知所有监听者
         this.notifyObservers(new Data(this.getmTemperatrue(), this.getmPressure(), this.getmHumidity()));
     }
 
     /**
-     * 模拟被观察者数据状态变化
+     * 模拟被监听者数据状态变化
      * @param mTemperatrue
      * @param mPressure
      * @param mHumidity

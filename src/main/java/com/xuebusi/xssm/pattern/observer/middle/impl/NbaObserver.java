@@ -15,7 +15,7 @@ public class NbaObserver implements Observer {
 
     @Override
     public void update() {
-        System.out.println(this.name + ":update====被观察者状态发生变化:" + sub.getAction());
+        System.out.println(this.name + ":update====被监听者状态发生变化:" + sub.getAction());
     }
 
 

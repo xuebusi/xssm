@@ -2,7 +2,7 @@ package com.xuebusi.xssm.pattern.observer.active.job;
 
 import com.xuebusi.xssm.pattern.observer.active.enums.ActStatusEnum;
 import com.xuebusi.xssm.pattern.observer.active.job.dto.ActiveDto;
-import com.xuebusi.xssm.pattern.observer.active.job.impl.ActiveSub;
+import com.xuebusi.xssm.pattern.observer.active.job.impl.CommonSub;
 import com.xuebusi.xssm.pattern.observer.active.job.impl.MultiActiveObs;
 import com.xuebusi.xssm.pattern.observer.active.job.impl.UltimaActiveObs;
 
@@ -16,36 +16,39 @@ import java.util.Observer;
 public class MainTest {
 
     public static void main(String[] args) {
-        IActiveSub activeSub = registerObserver();
+        ICommonSub activeSub = registerObserver();
         List<ActiveDto> activeDtoList = getActiveList();
 
-        // 如果活动已经结束，通知所有观察者
+        // 如果活动已经结束，通知所有监听者
         for (ActiveDto activeDto : activeDtoList) {
             if (activeDto == null) {
                 continue;
             }
             if (activeIsEnd(activeDto.getActiveStatus())) {
-                activeSub.notifyToAll(activeDto);
+                activeSub.notifyObs(activeDto);
             }
         }
 
     }
 
     /**
-     * 注册观察者
-     * @return 被观察者接口
+     * 注册监听者
+     * @return 被监听者接口
      */
-    public static IActiveSub registerObserver() {
-        // 被观察者
-        ActiveSub activeSub = new ActiveSub();
-        // 观察者
+    public static ICommonSub registerObserver() {
+        // 被监听者
+        CommonSub commonSub = new CommonSub();
+        // 监听者
         Observer multiActiveObs = new MultiActiveObs();
         Observer ultimaActiveObs = new UltimaActiveObs();
-        // 注册观察者
-        activeSub.addObserver(multiActiveObs);
-        activeSub.addObserver(ultimaActiveObs);
+        // 注册监听者
+        commonSub.addObserver(multiActiveObs);
+        commonSub.addObserver(ultimaActiveObs);
 
-        return activeSub;
+        //commonSub.deleteObserver(multiActiveObs);
+        System.out.println("监听者数量:" + commonSub.countObservers());
+
+        return commonSub;
     }
 
     /**
@@ -55,9 +58,9 @@ public class MainTest {
     public static List<ActiveDto> getActiveList() {
         List<ActiveDto> activeDtoList = new ArrayList<>();
 
-        ActiveDto activeDtoA = new ActiveDto("101", "活动A", "2");
-        ActiveDto activeDtoB = new ActiveDto("102", "活动B", "2");
-        ActiveDto activeDtoC = new ActiveDto("103", "活动C", "2");
+        ActiveDto activeDtoA = new ActiveDto("3424167885000", "第七届全球游戏大会", "2");
+        ActiveDto activeDtoB = new ActiveDto("2432243756900", "世界区块链峰会", "2");
+        ActiveDto activeDtoC = new ActiveDto("2429493984800", "支付设计大会", "2");
 
         activeDtoList.add(activeDtoA);
         activeDtoList.add(activeDtoB);
