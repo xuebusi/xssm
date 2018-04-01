@@ -34,8 +34,8 @@ public class MainTest {
         // 被观察者
         ActiveSub activeSub = new ActiveSub();
         // 观察者
-        IActiveObs<ActiveDto> multiActiveObs = new MultiActiveObs();
-        UltimaActiveObs<Object> ultimaActiveObs = new UltimaActiveObs<>();
+        IActiveObs multiActiveObs = new MultiActiveObs();
+        IActiveObs ultimaActiveObs = new UltimaActiveObs();
         // 注册观察者
         activeSub.addObserver(multiActiveObs);
         activeSub.addObserver(ultimaActiveObs);

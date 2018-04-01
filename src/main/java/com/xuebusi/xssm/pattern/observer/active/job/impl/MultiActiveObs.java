@@ -9,7 +9,7 @@ import java.util.Observable;
 /**
  * 多人拼活动观察者
  */
-public class MultiActiveObs<T> implements IActiveObs<T>, IActiveService {
+public class MultiActiveObs<T> implements IActiveObs, IActiveService {
 
     /**
      * 记录被观察者的数据
@@ -18,11 +18,11 @@ public class MultiActiveObs<T> implements IActiveObs<T>, IActiveService {
 
     /**
      * 接收被观察者的数据，更新自己
-     * @param o
-     * @param data
+     * @param obs 被观察者
+     * @param data 被观察者的数据
      */
     @Override
-    public void update(Observable o, Object data) {
+    public void update(Observable obs, Object data) {
         this.data = (T) data;
         this.sendGoods();
         this.refund();

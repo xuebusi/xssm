@@ -10,7 +10,7 @@ import java.util.Random;
 /**
  * 拼到底活动观察者
  */
-public class UltimaActiveObs<T> implements IActiveObs<T>, IActiveService {
+public class UltimaActiveObs<T> implements IActiveObs, IActiveService {
 
     /**
      * 记录被观察者的数据
