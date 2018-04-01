@@ -8,6 +8,7 @@ import com.xuebusi.xssm.pattern.observer.active.job.impl.UltimaActiveObs;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observer;
 
 /**
  * 测试类
@@ -34,8 +35,8 @@ public class MainTest {
         // 被观察者
         ActiveSub activeSub = new ActiveSub();
         // 观察者
-        IActiveObs multiActiveObs = new MultiActiveObs();
-        IActiveObs ultimaActiveObs = new UltimaActiveObs();
+        Observer multiActiveObs = new MultiActiveObs();
+        Observer ultimaActiveObs = new UltimaActiveObs();
         // 注册观察者
         activeSub.addObserver(multiActiveObs);
         activeSub.addObserver(ultimaActiveObs);

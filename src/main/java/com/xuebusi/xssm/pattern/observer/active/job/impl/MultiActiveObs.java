@@ -1,15 +1,15 @@
 package com.xuebusi.xssm.pattern.observer.active.job.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.xuebusi.xssm.pattern.observer.active.job.IActiveObs;
 import com.xuebusi.xssm.pattern.observer.active.job.IActiveService;
 
 import java.util.Observable;
+import java.util.Observer;
 
 /**
  * 多人拼活动观察者
  */
-public class MultiActiveObs<T> implements IActiveObs, IActiveService {
+public class MultiActiveObs<T> implements Observer, IActiveService {
 
     /**
      * 记录被观察者的数据

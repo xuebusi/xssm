@@ -1,16 +1,16 @@
 package com.xuebusi.xssm.pattern.observer.active.job.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.xuebusi.xssm.pattern.observer.active.job.IActiveObs;
 import com.xuebusi.xssm.pattern.observer.active.job.IActiveService;
 
 import java.util.Observable;
+import java.util.Observer;
 import java.util.Random;
 
 /**
  * 拼到底活动观察者
  */
-public class UltimaActiveObs<T> implements IActiveObs, IActiveService {
+public class UltimaActiveObs<T> implements Observer, IActiveService {
 
     /**
      * 记录被观察者的数据
