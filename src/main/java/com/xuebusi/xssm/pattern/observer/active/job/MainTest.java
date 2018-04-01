@@ -14,13 +14,17 @@ import java.util.Observer;
  * 测试类
  */
 public class MainTest {
+
     public static void main(String[] args) {
         IActiveSub activeSub = registerObserver();
         List<ActiveDto> activeDtoList = getActiveList();
 
         // 如果活动已经结束，通知所有观察者
         for (ActiveDto activeDto : activeDtoList) {
-            if (activeDto != null && activeIsEnd(activeDto.getActiveStatus())) {
+            if (activeDto == null) {
+                continue;
+            }
+            if (activeIsEnd(activeDto.getActiveStatus())) {
                 activeSub.notifyToAll(activeDto);
             }
         }
@@ -63,11 +67,30 @@ public class MainTest {
     }
 
     /**
-     * 活动是否结束
+     * 活动是否已结束
      * @param activeStatus
      * @return
      */
     public static boolean activeIsEnd(String activeStatus) {
         return ActStatusEnum.END.getCode().equals(activeStatus);
     }
+
+    /**
+     * 活动是否已开始（进行中）
+     * @param activeStatus
+     * @return
+     */
+    public static boolean activeIsStart(String activeStatus) {
+        return ActStatusEnum.START.getCode().equals(activeStatus);
+    }
+
+    /**
+     * 活动是否未开始
+     * @param activeStatus
+     * @return
+     */
+    public static boolean activeIsNotStart(String activeStatus) {
+        return ActStatusEnum.NOT_START.getCode().equals(activeStatus);
+    }
+
 }

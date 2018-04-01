@@ -22,6 +22,16 @@ public class ActiveDto implements Serializable {
      */
     private String activeStatus;
 
+    /**
+     * 活动开始时间
+     */
+    private String activeStartTime;
+
+    /**
+     * 活动结束时间
+     */
+    private String activeEndTime;
+
     public ActiveDto() {
     }
 
@@ -53,5 +63,21 @@ public class ActiveDto implements Serializable {
 
     public void setActiveStatus(String activeStatus) {
         this.activeStatus = activeStatus;
+    }
+
+    public String getActiveStartTime() {
+        return activeStartTime;
+    }
+
+    public void setActiveStartTime(String activeStartTime) {
+        this.activeStartTime = activeStartTime;
+    }
+
+    public String getActiveEndTime() {
+        return activeEndTime;
+    }
+
+    public void setActiveEndTime(String activeEndTime) {
+        this.activeEndTime = activeEndTime;
     }
 }
