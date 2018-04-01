@@ -16,7 +16,7 @@ import java.util.Observer;
 public class MainTest {
 
     public static void main(String[] args) {
-        ICommonSub activeSub = registerObserver();
+        ICommonSub commonSub = registerObserver();
         List<ActiveDto> activeDtoList = getActiveList();
 
         // 如果活动已经结束，通知所有监听者
@@ -25,7 +25,7 @@ public class MainTest {
                 continue;
             }
             if (activeIsEnd(activeDto.getActiveStatus())) {
-                activeSub.notifyObs(activeDto);
+                commonSub.notifyObs(activeDto);
             }
         }
 
@@ -44,8 +44,9 @@ public class MainTest {
         // 注册监听者
         commonSub.addObserver(multiActiveObs);
         commonSub.addObserver(ultimaActiveObs);
-
-        //commonSub.deleteObserver(multiActiveObs);
+        // 移除监听者
+        commonSub.deleteObserver(multiActiveObs);
+        commonSub.deleteObserver(ultimaActiveObs);
         System.out.println("监听者数量:" + commonSub.countObservers());
 
         return commonSub;
