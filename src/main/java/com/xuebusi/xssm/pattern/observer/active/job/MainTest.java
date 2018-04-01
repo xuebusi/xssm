@@ -15,7 +15,7 @@ import java.util.Observer;
  */
 public class MainTest {
     public static void main(String[] args) {
-        ActiveSub activeSub = registerObserver();
+        IActiveSub activeSub = registerObserver();
         List<ActiveDto> activeDtoList = getActiveList();
 
         // 如果活动已经结束，通知所有观察者
@@ -29,9 +29,9 @@ public class MainTest {
 
     /**
      * 注册观察者
-     * @return 被观察者
+     * @return 被观察者接口
      */
-    public static ActiveSub registerObserver() {
+    public static IActiveSub registerObserver() {
         // 被观察者
         ActiveSub activeSub = new ActiveSub();
         // 观察者
