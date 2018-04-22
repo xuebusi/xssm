@@ -86,4 +86,23 @@ public class BeanValidators {
 		}
 		return builder.toString();
 	}
+
+	/**
+	 * 辅助方法, 转换ConstraintViolationException中的Set<ConstraintViolations>为Map<property, message>.
+	 */
+	public static Map<String, String> extractPropertyAndMessage(ConstraintViolationException e) {
+		return extractPropertyAndMessage(e.getConstraintViolations());
+	}
+
+	/**
+	 * 辅助方法, 转换Set<ConstraintViolation>为Map<property, message>.
+	 */
+	@SuppressWarnings("rawtypes")
+	public static Map<String, String> extractPropertyAndMessage(Set<? extends ConstraintViolation> constraintViolations) {
+		Map<String, String> errorMessages = new HashMap<>();
+		for (ConstraintViolation violation : constraintViolations) {
+			errorMessages.put(violation.getPropertyPath().toString(), violation.getMessage());
+		}
+		return errorMessages;
+	}
 }
