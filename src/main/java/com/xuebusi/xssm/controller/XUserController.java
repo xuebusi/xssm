@@ -1,6 +1,7 @@
 package com.xuebusi.xssm.controller;
 
 import com.xuebusi.xssm.common.PageResult;
+import com.xuebusi.xssm.dto.UserDto;
 import com.xuebusi.xssm.pojo.XUser;
 import com.xuebusi.xssm.service.XUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,17 +71,24 @@ public class XUserController extends BaseController {
 
     /**
      * 添加用户
-     * @param user
+     * @param userDto
      * @return
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public String add(XUser user) {
-        String fields = beanValidator(user);
-        if (!StringUtils.isEmpty(fields)) {
-            return paramError(fields);
+    public String add(@RequestBody UserDto userDto) {
+        Map<String, String> resultMap = beanValidator(userDto);
+        if (resultMap != null) {
+            return paramError(resultMap);
         }
-        userService.insert(user);
+        XUser xUser = new XUser();
+        xUser.setName(userDto.getName());
+        xUser.setAddress(userDto.getAddress());
+        if (!StringUtils.isEmpty(userDto.getAge())) {
+            xUser.setAge(Integer.valueOf(userDto.getAge()));
+        }
+        xUser.setPhone(userDto.getPhone());
+        userService.insert(xUser);
         return success();
     }
 }

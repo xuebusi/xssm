@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
+import java.util.Map;
 
 /**
  * 控制器支持类
@@ -14,23 +15,26 @@ import javax.validation.Validator;
  * @version 2018-1-14
  */
 public abstract class BaseController {
-	
-	/**
-	 * 验证Bean实例对象
-	 */
-	@Autowired
-	private Validator validator;
-	
+
+    /**
+     * 验证Bean实例对象
+     */
+    @Autowired
+    protected Validator validator;
+
 	/**
 	 * 服务端参数有效性验证
 	 * @param object 验证的实体对象
 	 */
-	public String beanValidator(Object object) {
-		try {
+	public Map<String, String> beanValidator(Object object) {
+        /*ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
+        Validator validator = validatorFactory.getValidator();*/
+        try {
 			BeanValidators.validate(validator, object);
 		} catch (ConstraintViolationException ex) {
-			String message = BeanValidators.extractPropertyAndMessageAsString(ex, ",");
-			return message;
+			//String message = BeanValidators.extractPropertyAndMessageAsString(ex, ",");
+			Map<String, String> propertyAndMessage = BeanValidators.extractPropertyAndMessage(ex);
+            return propertyAndMessage;
 		}
 		return null;
 	}
