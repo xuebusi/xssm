@@ -114,7 +114,7 @@ public class EmayTest {
     }
 
     /**
-     * 测试查询余额接口
+     * 测试查询账户状态接口
      * @return
      */
     public static String getStatusReport() {
