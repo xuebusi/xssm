@@ -22,14 +22,14 @@ public class EmayTest {
         System.out.println(result1);
 
         // 测试查询余额接口
-//        String result2 = getMMSCount();
-//        System.out.println("------------查询余额接口返回结果--------------");
-//        System.out.println(result2);
+        String result2 = getMMSCount();
+        System.out.println("------------查询余额接口返回结果--------------");
+        System.out.println(result2);
 
         // 测试查询账户状态接口
-//        String result3 = getStatusReport();
-//        System.out.println("------------查询账户状态接口返回结果--------------");
-//        System.out.println(result3);
+        String result3 = getStatusReport();
+        System.out.println("------------查询账户状态接口返回结果--------------");
+        System.out.println(result3);
 
     }
 
