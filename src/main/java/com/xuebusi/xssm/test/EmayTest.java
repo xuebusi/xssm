@@ -81,11 +81,6 @@ public class EmayTest {
     /**
      * 测试查询账户余额接口
      */
-    // 返回数据格式如下
-    /*
-        <?xml version="1.0" encoding="utf-8"?>
-        <long xmlns="http://tempuri.org/">0</long>
-    */
     public static String getMMSCount() {
         // 查询账户余额接口地址
         String reqURL = "http://mmsplat.eucp.b2m.cn/MMSCenterInterface/MMS.asmx/GetMMSCount";
@@ -100,6 +95,11 @@ public class EmayTest {
         paramMap.put("sendType", "1");
 
         // 查询账户余额
+        // 亿美接口返回数据格式如下
+        /*
+            <?xml version="1.0" encoding="utf-8"?>
+            <long xmlns="http://tempuri.org/">0</long>
+        */
         String result = HttpClientUtil.sendPost(reqURL, paramMap, "UTF-8", "application/x-www-form-urlencoded");
         try {
             // 将xml转成json对象
@@ -117,18 +117,6 @@ public class EmayTest {
      * 测试查询余额接口
      * @return
      */
-    //返回结果格式如下:
-    /*<string xmlns="http://tempuri.org/">
-      <?xml version="1.0"?>
-        <MMSResult
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-            <StartIndex>0</StartIndex>
-            <SumCount>0</SumCount>
-            <PageCount>0</PageCount>
-            <RsList />
-        </MMSResult>
-    </string>*/
     public static String getStatusReport() {
         // 查询账户状态接口地址
         String reqURL = "http://mmsplat.eucp.b2m.cn/MMSCenterInterface/MMS.asmx/GetStatusReport";
@@ -141,6 +129,18 @@ public class EmayTest {
         paramMap.put("password", "c5f1213ce8");
 
         // 查询账户状态
+        // 亿美接口返回结果格式如下:
+        /*<string xmlns="http://tempuri.org/">
+          <?xml version="1.0"?>
+            <MMSResult
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <StartIndex>0</StartIndex>
+                <SumCount>0</SumCount>
+                <PageCount>0</PageCount>
+                <RsList />
+            </MMSResult>
+        </string>*/
         String result = HttpClientUtil.sendPost(reqURL, paramMap, "UTF-8", "application/x-www-form-urlencoded");
         if (!StringUtils.isEmpty(result)) {
             // 由于返回的不是标准的xml格式，需要处理成标准的xml格式才能正确解析：
