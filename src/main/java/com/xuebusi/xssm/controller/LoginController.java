@@ -29,7 +29,7 @@ public class LoginController extends BaseController {
      */
     private static String weixinAppid = "";
     private static String weixinSecret = "";
-    private static String weixinRedirectUri = "";
+    private static String weixinRedirectUri = "http://xuebusi.com/login/loginByWeChat";
 
     /**
      * QQ开发者账号和密码
@@ -81,6 +81,20 @@ public class LoginController extends BaseController {
         return url;
     }
 
+
+    /**
+     * 从微信接口获取code
+     * 该url只能使用微信中访问
+     * @return
+     */
+    @RequestMapping(value = "/getCodeUrl")
+    @ResponseBody
+    public String getCodeUrl() {
+        Weixin weixin = new Weixin(weixinAppid, weixinSecret);
+        String url = weixin.getOAuth2().authorize(weixinRedirectUri);
+        System.out.println(url);
+        return url;
+    }
 
     /**
      * 微信授权登陆
