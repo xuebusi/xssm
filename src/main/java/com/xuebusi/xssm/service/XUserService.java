@@ -3,6 +3,7 @@ package com.xuebusi.xssm.service;
 
 import com.xuebusi.xssm.common.PageResult;
 import com.xuebusi.xssm.pojo.XUser;
+import com.xuebusi.xssm.pojo.XUserExample;
 
 import java.util.List;
 
@@ -17,4 +18,8 @@ public interface XUserService {
     List<XUser> findAll();
 
     PageResult findPage(int pageNum, int pageSize);
+
+    PageResult findPage(int pageNum, int pageSize, String userName, String phone);
+
+    List<XUser> selectByExample(XUserExample example);
 }

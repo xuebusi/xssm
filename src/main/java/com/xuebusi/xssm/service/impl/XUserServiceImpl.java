@@ -9,6 +9,7 @@ import com.xuebusi.xssm.pojo.XUserExample;
 import com.xuebusi.xssm.service.XUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -58,8 +59,42 @@ public class XUserServiceImpl implements XUserService {
         List<XUser> userList = userMapper.selectByExample(example);
         PageInfo<XUser> pageInfo = new PageInfo<>(userList);
         PageResult result = new PageResult();
-        result.setTotal(pageInfo.getTotal());
-        result.setRows(pageInfo.getList());
+        result.setTotalRecordCount(pageInfo.getTotal());
+        result.setPageSize(pageSize);
+        result.setPageNum(pageNum);
+        result.setData(pageInfo.getList());
         return result;
+    }
+
+    @Override
+    public PageResult findPage(int pageNum, int pageSize, String userName, String phone) {
+        PageHelper.startPage(pageNum, pageSize);
+        XUserExample example = new XUserExample();
+        XUserExample.Criteria criteria = example.createCriteria();
+        if (!StringUtils.isEmpty(userName)) {
+            criteria.andNameEqualTo(userName);
+        }
+        if (!StringUtils.isEmpty(phone)) {
+            criteria.andPhoneEqualTo(phone);
+        }
+        List<XUser> userList = userMapper.selectByExample(example);
+        PageInfo<XUser> pageInfo = new PageInfo<>(userList);
+        PageResult result = new PageResult();
+        result.setTotalRecordCount(pageInfo.getTotal());
+        result.setPageSize(pageSize);
+        result.setPageNum(pageNum);
+        result.setData(pageInfo.getList());
+        return result;
+    }
+
+    /**
+     * 条件查询
+     * @param example
+     * @return
+     */
+    @Override
+    public List<XUser> selectByExample(XUserExample example) {
+        List<XUser> xUsers = userMapper.selectByExample(example);
+        return xUsers;
     }
 }

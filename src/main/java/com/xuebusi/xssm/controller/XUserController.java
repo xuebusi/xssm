@@ -3,12 +3,14 @@ package com.xuebusi.xssm.controller;
 import com.xuebusi.xssm.common.PageResult;
 import com.xuebusi.xssm.dto.UserDto;
 import com.xuebusi.xssm.pojo.XUser;
+import com.xuebusi.xssm.pojo.XUserExample;
 import com.xuebusi.xssm.service.XUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,5 +92,23 @@ public class XUserController extends BaseController {
         xUser.setPhone(userDto.getPhone());
         userService.insert(xUser);
         return success();
+    }
+
+
+    @RequestMapping(value = "/selectByExample", method = RequestMethod.GET)
+    @ResponseBody
+    public List<XUser> selectByExample() {
+        XUserExample userExample = new XUserExample();
+        userExample.setOrderByClause("id asc");
+        userExample.setOrderByClause("age desc");
+        System.out.println("=========================" + userExample.getOrderByClause());
+
+        XUserExample.Criteria criteria = userExample.createCriteria();
+        List<Integer> idList = new ArrayList<>();
+        if (!idList.isEmpty()) {
+            criteria.andIdIn(idList);
+        }
+        List<XUser> userList = userService.selectByExample(userExample);
+        return userList;
     }
 }

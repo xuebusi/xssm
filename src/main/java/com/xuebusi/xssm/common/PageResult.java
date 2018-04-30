@@ -1,42 +1,47 @@
 package com.xuebusi.xssm.common;
 
-import java.util.List;
-
 /**
  * Created by 学布斯 on 2017/12/18.
  */
-public class PageResult {
+public class PageResult<T> {
 
-    /**
-     * 总条数
-     */
-    private long total;
     /**
      * 分页数据
      */
-    private List<?> rows;
+    private T data;
+    private int pageNum;
+    private int pageSize;
+    private long totalRecordCount;
 
-    public long getTotal() {
-        return total;
+    public T getData() {
+        return data;
     }
 
-    public void setTotal(long total) {
-        this.total = total;
+    public void setData(T data) {
+        this.data = data;
     }
 
-    public List<?> getRows() {
-        return rows;
+    public int getPageNum() {
+        return pageNum;
     }
 
-    public void setRows(List<?> rows) {
-        this.rows = rows;
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
     }
 
-    @Override
-    public String toString() {
-        return "PageResult{" +
-                "total=" + total +
-                ", rows=" + rows +
-                '}';
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public long getTotalRecordCount() {
+        return totalRecordCount;
+    }
+
+    public void setTotalRecordCount(long totalRecordCount) {
+        this.totalRecordCount = totalRecordCount;
     }
 }
