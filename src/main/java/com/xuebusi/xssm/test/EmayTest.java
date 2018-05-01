@@ -4,9 +4,12 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.xuebusi.xssm.common.util.HttpClientUtil;
 import com.xuebusi.xssm.common.util.Xml2Json;
+import org.apache.commons.codec.binary.Base64;
 import org.dom4j.DocumentException;
 import org.springframework.util.StringUtils;
 
+import java.io.FileInputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +17,8 @@ import java.util.Map;
  * 亿美接口测试类
  */
 public class EmayTest {
+
+    private static Object MMSContent;
 
     public static void main(String[] args) {
         // 测试发送彩信接口
@@ -50,8 +55,10 @@ public class EmayTest {
         paramMap.put("title", "testmms");
         // 用户手机号
         paramMap.put("userNumbers", "17610639158");
+        byte[] mmsContent = getMMSContent("src/test2.zip");
+        String base64ToString = encode(mmsContent);
         // 彩信内容
-        paramMap.put("MMSContent", "0");
+        paramMap.put("MMSContent", base64ToString);
         // 发送类型
         paramMap.put("sendType", "1");
 
@@ -164,4 +171,35 @@ public class EmayTest {
         }
         return null;
     }
+
+    /**
+     * 读取zip包数据
+     * @return
+     */
+    public static byte[] getMMSContent(String filePath) {
+        FileInputStream fs;
+        byte[] content = new byte[0];
+        try {
+            fs = new FileInputStream(filePath);
+            content=new byte[fs.available()];
+            fs.read(content,0,content.length);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return content;
+    }
+
+    /**
+     * 将二进制数据编码为BASE64字符串
+     * @param binaryData
+     * @return
+     */
+    public static String encode(byte[] binaryData) {
+        try {
+            return new String(Base64.encodeBase64(binaryData), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            return null;
+        }
+    }
+
 }

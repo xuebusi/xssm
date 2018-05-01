@@ -34,7 +34,6 @@ import java.security.cert.X509Certificate;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class HttpClientUtil {
     private static final int CHECK_SOKET_TIMEOUT = 2000;//超时2秒记录提醒日志
@@ -215,8 +214,13 @@ public class HttpClientUtil {
     }
 
     public static String sendPost(String reqURL, Map<String, Object> maps, String encodeCharset, String contentType) {
-        List<BasicNameValuePair> pairs = maps.entrySet().stream().map(entry -> new BasicNameValuePair(entry.getKey(), entry.getValue().toString())).collect(Collectors.toList());
-        String reqData = URLEncodedUtils.format(pairs, StandardCharsets.UTF_8);
+        Set<Map.Entry<String, Object>> entrySet = maps.entrySet();
+        List<BasicNameValuePair> pairList = new ArrayList<>();
+        for (Map.Entry<String, Object> entry : entrySet) {
+            BasicNameValuePair pair = new BasicNameValuePair(entry.getKey(), entry.getValue().toString());
+            pairList.add(pair);
+        }
+        String reqData = URLEncodedUtils.format(pairList, StandardCharsets.UTF_8);
         return sendPostRequest(reqURL, reqData, encodeCharset, contentType);
     }
 
