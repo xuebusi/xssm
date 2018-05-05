@@ -111,4 +111,19 @@ public class XUserController extends BaseController {
         List<XUser> userList = userService.selectByExample(userExample);
         return userList;
     }
+
+    /**
+     * 测试更新
+     * @return
+     */
+    @RequestMapping(value = "/updateUser", method = RequestMethod.GET)
+    public String updateUser() {
+        List<XUser> userList = userService.findAll();
+        UserDto userDto = new UserDto();
+        userDto.setAge("100");
+        for (XUser user : userList) {
+            userService.update(user.getId(), userDto);
+        }
+        return "true";
+    }
 }

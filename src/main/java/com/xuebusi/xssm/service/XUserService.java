@@ -2,6 +2,7 @@ package com.xuebusi.xssm.service;
 
 
 import com.xuebusi.xssm.common.PageResult;
+import com.xuebusi.xssm.dto.UserDto;
 import com.xuebusi.xssm.pojo.XUser;
 import com.xuebusi.xssm.pojo.XUserExample;
 
@@ -22,4 +23,11 @@ public interface XUserService {
     PageResult findPage(int pageNum, int pageSize, String userName, String phone);
 
     List<XUser> selectByExample(XUserExample example);
+
+    /**
+     * 根据id修改用户信息
+     * @param id
+     * @return
+     */
+    int update(int id, UserDto userDto);
 }

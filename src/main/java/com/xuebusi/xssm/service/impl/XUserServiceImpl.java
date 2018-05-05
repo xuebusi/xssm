@@ -3,6 +3,7 @@ package com.xuebusi.xssm.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xuebusi.xssm.common.PageResult;
+import com.xuebusi.xssm.dto.UserDto;
 import com.xuebusi.xssm.mapper.XUserMapper;
 import com.xuebusi.xssm.pojo.XUser;
 import com.xuebusi.xssm.pojo.XUserExample;
@@ -96,5 +97,24 @@ public class XUserServiceImpl implements XUserService {
     public List<XUser> selectByExample(XUserExample example) {
         List<XUser> xUsers = userMapper.selectByExample(example);
         return xUsers;
+    }
+
+    /**
+     * 根据id修改用户信息
+     * @param id
+     * @return
+     */
+    @Override
+    public int update(int id, UserDto userDto) {
+        XUser user = userMapper.selectByPrimaryKey(id);
+        if (userDto != null) {
+            user.setName(userDto.getName());
+            user.setAddress(userDto.getAddress());
+            Integer age = StringUtils.isEmpty(userDto.getAge()) ? null : Integer.valueOf(userDto.getAge());
+            user.setAge(age);
+            user.setPhone(userDto.getPhone());
+        }
+        int result = userMapper.updateByPrimaryKey(user);
+        return result;
     }
 }

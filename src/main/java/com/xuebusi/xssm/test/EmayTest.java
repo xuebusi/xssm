@@ -3,6 +3,7 @@ package com.xuebusi.xssm.test;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.xuebusi.xssm.common.util.HttpClientUtil;
+import com.xuebusi.xssm.common.util.MD5;
 import com.xuebusi.xssm.common.util.Xml2Json;
 import org.apache.commons.codec.binary.Base64;
 import org.dom4j.DocumentException;
@@ -22,20 +23,41 @@ public class EmayTest {
 
     public static void main(String[] args) {
         // 测试发送彩信接口
-        String result1 = sendMMS();
-        System.out.println("------------发送彩信接口返回结果--------------");
-        System.out.println(result1);
+//        String result1 = sendMMS();
+//        System.out.println("------------发送彩信接口返回结果--------------");
+//        System.out.println(result1);
 
         // 测试查询余额接口
-        String result2 = getMMSCount();
-        System.out.println("------------查询余额接口返回结果--------------");
-        System.out.println(result2);
+//        String result2 = getMMSCount();
+//        System.out.println("------------查询余额接口返回结果--------------");
+//        System.out.println(result2);
 
         // 测试查询账户状态接口
-        String result3 = getStatusReport();
-        System.out.println("------------查询账户状态接口返回结果--------------");
-        System.out.println(result3);
+//        String result3 = getStatusReport();
+//        System.out.println("------------查询账户状态接口返回结果--------------");
+//        System.out.println(result3);
+        sendXmlMMS();
+    }
 
+    public static String sendXmlMMS() {
+        // 发送彩信接口地址
+        String reqURL = "http://124.251.7.68:3002/httpmms/gdmms";
+        byte[] mmsContent = getMMSContent("src/test2.zip");
+        String base64ToString = encode(mmsContent);
+        String paramXml = "<?xml version=\"1.0\" encoding=\"GBK\"?>\n" +
+                "<mmsBean>\n" +
+                "\t<seqNum>20180503161202123456</seqNum>\n" +
+                "\t<username>jyjrcx</username>\n" +
+                "\t<password>" + MD5.encode("jyjrcx" + "jyjrcx") +"</password>\n" +
+                "\t<extendNo>001</extendNo>\n" +
+                "\t<mobiles>15801081566</mobiles>\n" +
+                "\t<mmsPkg>" + base64ToString + "</mmsPkg>\n" +
+                "</mmsBean>";
+
+        String result = HttpClientUtil.sendPostRequest(reqURL, paramXml, "GBK", "text/xml");
+        System.out.println("===========================");
+        System.out.println(result);
+        return "success";
     }
 
     /**
