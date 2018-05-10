@@ -43,7 +43,7 @@ public class GdTest {
 		"<username>jyjrcx</username>" +
 		"<password>"+MD5("jyjrcx","jyjrcx")+"</password>" +
 		"<extendNo></extendNo>" +
-		"<mobiles>18811496951</mobiles>" +
+		"<mobiles>15801081566</mobiles>" +
 		"<mmsPkg>"+createMmsPcg()+"</mmsPkg>" +
 		"</mmsBean>";
 		System.out.println(xml);
