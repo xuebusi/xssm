@@ -1,4 +1,4 @@
-package com.xuebusi.xssm.test.mms.client;
+package com.emy.mms.client;
 
 
 public class SingletonClient {

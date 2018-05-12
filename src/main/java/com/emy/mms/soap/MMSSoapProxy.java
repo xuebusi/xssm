@@ -1,4 +1,4 @@
-package com.xuebusi.xssm.test.mms.soap;
+package com.emy.mms.soap;
 
 public class MMSSoapProxy implements MMSSoap {
   private String _endpoint = null;

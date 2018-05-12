@@ -1,8 +1,8 @@
-package com.xuebusi.xssm.test.mms.client;
+package com.emy.mms.client;
 
-import com.xuebusi.xssm.test.mms.soap.MMS;
-import com.xuebusi.xssm.test.mms.soap.MMSLocator;
-import com.xuebusi.xssm.test.mms.soap.MMSSoap;
+import com.emy.mms.soap.MMS;
+import com.emy.mms.soap.MMSLocator;
+import com.emy.mms.soap.MMSSoap;
 
 import javax.xml.rpc.ServiceException;
 
