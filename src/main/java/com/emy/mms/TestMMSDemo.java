@@ -5,9 +5,12 @@ import com.emy.mms.client.SingletonClient;
 import org.apache.commons.codec.binary.Base64;
 
 import java.io.FileInputStream;
-import java.io.UnsupportedEncodingException;
 
 public class TestMMSDemo {
+
+	private static final String USER_NAME = "bf-test";
+	private static final String PASSWORD = "c5f1213ce8";
+	private static final int SEND_TYPE = 1;
 
 	public static void main(String[] args) {
 		// 测试发送彩信
@@ -21,7 +24,6 @@ public class TestMMSDemo {
 		// 测试获得状态报告
 		System.out.println(testGetReport());
 
-
 	}
 	
 	/**
@@ -32,16 +34,13 @@ public class TestMMSDemo {
 		try {
 			String mmsTitle = "测试亿美发送彩信接口";
 			String userNumbers = "15801081566";
-			int sendType = 1;
-			byte[] binaryData = readContent();
+			byte[] binaryData = readContent("Report.zip");
 
 			String base64String = Base64.encodeBase64String(binaryData);
 			byte[] mmsContent = Base64.decodeBase64(base64String);
 
-			String userName = "bf-test";
-			String password = "c5f1213ce8";
-			MMSClient mmsClient = SingletonClient.getClient(userName, password);
-			result = mmsClient.sendMMS(mmsTitle, userNumbers, mmsContent, sendType);
+			MMSClient mmsClient = SingletonClient.getClient(USER_NAME, PASSWORD);
+			result = mmsClient.sendMMS(mmsTitle, userNumbers, mmsContent, SEND_TYPE);
 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -50,24 +49,13 @@ public class TestMMSDemo {
 	}
 
 	/**
-	 * 将二进制数据编码为BASE64字符串
-	 * @param binaryData
-	 * @return
-	 */
-	public static String encode(byte[] binaryData) {
-		//return new String(Base64.encodeBase64(binaryData), "UTF-8");
-		String base64String = Base64.encodeBase64String(binaryData);
-		return base64String;
-	}
-
-	/**
 	 * 读取彩信内容
 	 * @return
 	 */
-	private static byte[] readContent() {
+	private static byte[] readContent(String filePath) {
 		FileInputStream fs;
 		try {
-			fs = new FileInputStream("Report.zip");
+			fs = new FileInputStream(filePath);
 			byte[] content=new byte[fs.available()];
 			fs.read(content,0,content.length);
 			fs.close();
@@ -85,11 +73,8 @@ public class TestMMSDemo {
 	public static Long testGetBalance() {
 		Long mmsCount = null;
 		try {
-			String userName = "bf-test";
-			String password = "c5f1213ce8";
-			System.out.println();
-			MMSClient mmsClient = SingletonClient.getClient(userName, password);
-			mmsCount = mmsClient.getMMSCount(1);
+			MMSClient mmsClient = SingletonClient.getClient(USER_NAME, PASSWORD);
+			mmsCount = mmsClient.getMMSCount(SEND_TYPE);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -102,9 +87,7 @@ public class TestMMSDemo {
 	public static String testGetReport() {
 		String statusReport = null;
 		try {
-			String userName = "bf-test";
-			String password = "c5f1213ce8";
-			MMSClient mmsClient = SingletonClient.getClient(userName, password);
+			MMSClient mmsClient = SingletonClient.getClient(USER_NAME, PASSWORD);
 			statusReport = mmsClient.getStatusReport();
 		} catch (Exception e) {
 			e.printStackTrace();
