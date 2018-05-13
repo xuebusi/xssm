@@ -23,9 +23,9 @@ public class EmayTest {
 
     public static void main(String[] args) {
         // 测试发送彩信接口
-//        String result1 = sendMMS();
-//        System.out.println("------------发送彩信接口返回结果--------------");
-//        System.out.println(result1);
+        String result1 = sendMMS();
+        System.out.println("------------发送彩信接口返回结果--------------");
+        System.out.println(result1);
 
         // 测试查询余额接口
 //        String result2 = getMMSCount();
@@ -36,7 +36,7 @@ public class EmayTest {
 //        String result3 = getStatusReport();
 //        System.out.println("------------查询账户状态接口返回结果--------------");
 //        System.out.println(result3);
-        sendXmlMMS();
+//        sendXmlMMS();
     }
 
     public static String sendXmlMMS() {
@@ -77,10 +77,10 @@ public class EmayTest {
         paramMap.put("title", "testmms");
         // 用户手机号
         paramMap.put("userNumbers", "17610639158");
-        byte[] mmsContent = getMMSContent("src/test2.zip");
-        String base64ToString = encode(mmsContent);
+        byte[] binaryData = getMMSContent("Report.zip");
+        String mmsContent = Base64.encodeBase64String(binaryData);
         // 彩信内容
-        paramMap.put("MMSContent", base64ToString);
+        paramMap.put("MMSContent", mmsContent);
         // 发送类型
         paramMap.put("sendType", "1");
 
@@ -217,11 +217,9 @@ public class EmayTest {
      * @return
      */
     public static String encode(byte[] binaryData) {
-        try {
-            return new String(Base64.encodeBase64(binaryData), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            return null;
-        }
+        //return new String(Base64.encodeBase64(binaryData), "UTF-8");
+        String base64String = Base64.encodeBase64String(binaryData);
+        return base64String;
     }
 
 }

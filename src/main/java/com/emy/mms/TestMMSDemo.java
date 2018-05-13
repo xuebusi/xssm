@@ -2,8 +2,10 @@ package com.emy.mms;
 
 import com.emy.mms.client.MMSClient;
 import com.emy.mms.client.SingletonClient;
+import org.apache.commons.codec.binary.Base64;
 
 import java.io.FileInputStream;
+import java.io.UnsupportedEncodingException;
 
 public class TestMMSDemo {
 
@@ -31,16 +33,31 @@ public class TestMMSDemo {
 			String mmsTitle = "测试亿美发送彩信接口";
 			String userNumbers = "15801081566";
 			int sendType = 1;
-			byte[] content = readContent();
+			byte[] binaryData = readContent();
+
+			String base64String = Base64.encodeBase64String(binaryData);
+			byte[] mmsContent = Base64.decodeBase64(base64String);
+
 			String userName = "bf-test";
 			String password = "c5f1213ce8";
 			MMSClient mmsClient = SingletonClient.getClient(userName, password);
-			result = mmsClient.sendMMS(mmsTitle, userNumbers, content, sendType);
+			result = mmsClient.sendMMS(mmsTitle, userNumbers, mmsContent, sendType);
 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	/**
+	 * 将二进制数据编码为BASE64字符串
+	 * @param binaryData
+	 * @return
+	 */
+	public static String encode(byte[] binaryData) {
+		//return new String(Base64.encodeBase64(binaryData), "UTF-8");
+		String base64String = Base64.encodeBase64String(binaryData);
+		return base64String;
 	}
 
 	/**
