@@ -13,26 +13,26 @@ public class TestMMSDemo {
 	private static final int SEND_TYPE = 1;
 
 	public static void main(String[] args) {
-		// ²âÊÔ·¢ËÍ²ÊĞÅ
+		// æµ‹è¯•å‘é€å½©ä¿¡
 		System.out.println(sendMMS());
 		System.out.println("====================");
 
-		// ²âÊÔ²éÑ¯Óà¶î
+		// æµ‹è¯•æŸ¥è¯¢ä½™é¢
 		System.out.println(testGetBalance());
 		System.out.println("====================");
 
-		// ²âÊÔ»ñµÃ×´Ì¬±¨¸æ
+		// æµ‹è¯•è·å¾—çŠ¶æ€æŠ¥å‘Š
 		System.out.println(testGetReport());
 
 	}
 	
 	/**
-	 * ·¢ËÍ²ÊĞÅ
+	 * å‘é€å½©ä¿¡
 	 */
 	public static String sendMMS() {
 		String result = null;
 		try {
-			String mmsTitle = "²âÊÔÒÚÃÀ·¢ËÍ²ÊĞÅ½Ó¿Ú";
+			String mmsTitle = "æµ‹è¯•äº¿ç¾å‘é€å½©ä¿¡æ¥å£";
 			String userNumbers = "15801081566";
 			byte[] binaryData = readContent("Report.zip");
 
@@ -49,7 +49,7 @@ public class TestMMSDemo {
 	}
 
 	/**
-	 * ¶ÁÈ¡²ÊĞÅÄÚÈİ
+	 * è¯»å–å½©ä¿¡å†…å®¹
 	 * @return
 	 */
 	private static byte[] readContent(String filePath) {
@@ -67,8 +67,8 @@ public class TestMMSDemo {
 	}
 
 	/**
-	 * ²éÑ¯Óà¶î
-	 * 1ÊÇÍø¹ØÕË»§£¬2ÊÇµã¿¨ÕË»§
+	 * æŸ¥è¯¢ä½™é¢
+	 * 1æ˜¯ç½‘å…³è´¦æˆ·ï¼Œ2æ˜¯ç‚¹å¡è´¦æˆ·
 	 */
 	public static Long testGetBalance() {
 		Long mmsCount = null;
@@ -82,7 +82,7 @@ public class TestMMSDemo {
 	}
 	
 	/**
-	 * »ñµÃ×´Ì¬±¨¸æ
+	 * è·å¾—çŠ¶æ€æŠ¥å‘Š
 	 */
 	public static String testGetReport() {
 		String statusReport = null;
