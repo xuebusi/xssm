@@ -117,4 +117,9 @@ public class XUserServiceImpl implements XUserService {
         int result = userMapper.updateByPrimaryKey(user);
         return result;
     }
+
+    @Override
+    public int updateByExampleSelective(XUser record, XUserExample example) {
+        return userMapper.updateByExampleSelective(record, example);
+    }
 }

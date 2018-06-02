@@ -15,14 +15,14 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping(value = "/test")
 public class TestController {
 
-    @Autowired
-    private RestTemplate restTemplate;
+//    @Autowired
+//    private RestTemplate restTemplate;
 
     @RequestMapping(value = "test1")
     public String test1() {
         String reqUrl = "http://wthrcdn.etouch.cn/weather_mini?citykey=101280601";
-        ResponseEntity<String> entity = restTemplate.getForEntity(reqUrl, String.class);
-        System.out.println(JSON.toJSON(entity));
+//        ResponseEntity<String> entity = restTemplate.getForEntity(reqUrl, String.class);
+//        System.out.println(JSON.toJSON(entity));
         return "test1";
     }
 }

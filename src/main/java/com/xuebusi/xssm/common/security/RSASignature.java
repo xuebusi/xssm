@@ -9,6 +9,7 @@ import java.security.spec.X509EncodedKeySpec;
 
 /**
  * RSA签名验签类
+ *  私钥负责签名，公钥负责验证
  */
 public class RSASignature {
 
