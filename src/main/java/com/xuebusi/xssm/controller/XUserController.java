@@ -126,4 +126,19 @@ public class XUserController extends BaseController {
         }
         return "true";
     }
+
+    /**
+     * 测试修改（待查询条件）
+     * @return
+     */
+    @RequestMapping(value = "updateByExampleSelective")
+    @ResponseBody
+    public int updateByExampleSelective() {
+        XUser xUser = new XUser();
+        xUser.setName("====");
+        XUserExample xUserExample = new XUserExample();
+        xUserExample.createCriteria().andNameEqualTo("呵呵1");
+        int count = userService.updateByExampleSelective(xUser, xUserExample);
+        return count;
+    }
 }

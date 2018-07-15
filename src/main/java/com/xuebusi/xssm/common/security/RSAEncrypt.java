@@ -1,28 +1,22 @@
 package com.xuebusi.xssm.common.security;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.security.InvalidKeyException;
-import java.security.KeyFactory;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-
+import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-
+/**
+ * 公钥负责加密，私钥负责解密；
+ */
 public class RSAEncrypt {
     /**
      * 字节数据转字符串专用集合
@@ -33,7 +27,7 @@ public class RSAEncrypt {
     /**
      * 随机生成密钥对
      */
-    public static void genKeyPair(String filePath) {
+    public static KeyPair genKeyPair() {
         // KeyPairGenerator类用于生成公钥和私钥对，基于RSA算法生成对象  
         KeyPairGenerator keyPairGen = null;
         try {
@@ -46,6 +40,9 @@ public class RSAEncrypt {
         keyPairGen.initialize(1024, new SecureRandom());
         // 生成一个密钥对，保存在keyPair中  
         KeyPair keyPair = keyPairGen.generateKeyPair();
+
+        return keyPair;
+        /*
         // 得到私钥  
         RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
         // 得到公钥  
@@ -70,7 +67,7 @@ public class RSAEncrypt {
             prifw.close();
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     /**
