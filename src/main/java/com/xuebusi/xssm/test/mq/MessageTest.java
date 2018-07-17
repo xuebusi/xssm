@@ -12,11 +12,24 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class MessageTest {
 
-    public static ExecutorService executorService = Executors.newFixedThreadPool(2);
+    public static ExecutorService executorService = Executors.newCachedThreadPool();
     public static LinkedBlockingQueue<String> messageQueue = new LinkedBlockingQueue<>();
 
     public static void main(String[] args) {
-        executorService.execute(new MessageProducer<>(messageQueue));
-        executorService.execute(new MessageConsumer<>(messageQueue));
+        try {
+            MessageProducer<String> producer = new MessageProducer<>(messageQueue);
+            MessageConsumer<String> consumer = new MessageConsumer<>(messageQueue);
+            executorService.execute(producer);
+            executorService.execute(consumer);
+
+            Thread.sleep(10 * 1000);
+            producer.stop();
+
+            Thread.sleep(3000);
+            executorService.shutdown();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            Thread.currentThread().interrupt();
+        }
     }
 }
