@@ -1,7 +1,7 @@
 package com.xuebusi.xssm.test.mq;
 
 import java.util.UUID;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 /**
  * 消息生产者
@@ -11,9 +11,9 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class MessageProducer<T> implements Runnable {
 
-    private LinkedBlockingQueue<T> messageQueue;
+    private BlockingQueue<T> messageQueue;
 
-    public MessageProducer(LinkedBlockingQueue<T> messageQueue) {
+    public MessageProducer(BlockingQueue<T> messageQueue) {
         this.messageQueue = messageQueue;
     }
 

@@ -1,6 +1,6 @@
 package com.xuebusi.xssm.test.mq;
 
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 /**
  * 消息消费者
@@ -10,9 +10,9 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class MessageConsumer<T> implements Runnable {
 
-    private LinkedBlockingQueue<T> messageQueue;
+    private BlockingQueue<T> messageQueue;
 
-    public MessageConsumer(LinkedBlockingQueue<T> messageQueue) {
+    public MessageConsumer(BlockingQueue<T> messageQueue) {
         this.messageQueue = messageQueue;
     }
 

@@ -13,10 +13,10 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class MessageTest {
 
     public static ExecutorService executorService = Executors.newFixedThreadPool(2);
-    public static LinkedBlockingQueue messageQueue = new LinkedBlockingQueue<>();
+    public static LinkedBlockingQueue<String> messageQueue = new LinkedBlockingQueue<>();
 
     public static void main(String[] args) {
-        executorService.execute(new MessageProducer<String>(messageQueue));
-        executorService.execute(new MessageConsumer<String>(messageQueue));
+        executorService.execute(new MessageProducer<>(messageQueue));
+        executorService.execute(new MessageConsumer<>(messageQueue));
     }
 }
