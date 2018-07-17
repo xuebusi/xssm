@@ -187,4 +187,17 @@ public class XUserController extends BaseController {
         }
         return null;
     }
+
+    /**
+     * 测试获取 ApplicationContext
+     * @return
+     */
+    @RequestMapping(value = "testGetApplicationContext")
+    @ResponseBody
+    public List<XUser> testGetApplicationContext() {
+        ApplicationContext applicationContext = getApplicationContext();
+        XUserService userService = applicationContext.getBean(XUserService.class);
+        List<XUser> userList = userService.findAll();
+        return userList;
+    }
 }

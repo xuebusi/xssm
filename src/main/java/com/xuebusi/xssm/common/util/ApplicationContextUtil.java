@@ -22,4 +22,20 @@ public class ApplicationContextUtil {
         }
         return applicationContext;
     }
+
+    public static <T> T getBean(String beanName) {
+        assertApplicationContext();
+        return (T) applicationContext.getBean(beanName);
+    }
+
+    public static <T> T getBean(Class<T> clazz) {
+        assertApplicationContext();
+        return applicationContext.getBean(clazz);
+    }
+
+    private static void assertApplicationContext() {
+        if (ApplicationContextUtil.applicationContext == null) {
+            throw new RuntimeException("applicaitonContext属性为null!");
+        }
+    }
 }

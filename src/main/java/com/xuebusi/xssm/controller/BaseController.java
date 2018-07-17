@@ -4,7 +4,12 @@ import com.xuebusi.xssm.common.BeanValidators;
 import com.xuebusi.xssm.common.JsonResult;
 import com.xuebusi.xssm.common.ViewHint;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import javax.servlet.ServletContext;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
 import java.util.Map;
@@ -38,6 +43,17 @@ public abstract class BaseController {
 		}
 		return null;
 	}
+
+	/**
+	 * 获取applicationContext
+	 * @return
+	 */
+	public ApplicationContext getApplicationContext() {
+		ServletContext servletContext = ContextLoader.getCurrentWebApplicationContext().getServletContext();
+		WebApplicationContext applicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+		return applicationContext;
+	}
+
 	public String success() {
 		return JsonResult.success();
 	}
