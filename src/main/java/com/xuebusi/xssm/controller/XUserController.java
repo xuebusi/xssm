@@ -1,6 +1,8 @@
 package com.xuebusi.xssm.controller;
 
 import com.xuebusi.xssm.common.PageResult;
+import com.xuebusi.xssm.core.log.LogManager;
+import com.xuebusi.xssm.core.log.LogTaskFactory;
 import com.xuebusi.xssm.dto.UserDto;
 import com.xuebusi.xssm.pojo.XUser;
 import com.xuebusi.xssm.pojo.XUserExample;
@@ -10,10 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by 学布斯 on 2017/12/18.
@@ -140,5 +139,16 @@ public class XUserController extends BaseController {
         xUserExample.createCriteria().andNameEqualTo("呵呵1");
         int count = userService.updateByExampleSelective(xUser, xUserExample);
         return count;
+    }
+
+    /**
+     * 测试日志
+     * @return
+     */
+    @RequestMapping(value = "/testLog")
+    public String testLog(@RequestParam(value = "userId") String userId) {
+        TimerTask logTask = LogTaskFactory.testLog(Integer.valueOf(userId));
+        LogManager.me().executor(logTask);
+        return "success";
     }
 }
