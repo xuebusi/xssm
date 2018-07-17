@@ -1,6 +1,8 @@
 package com.xuebusi.xssm.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.xuebusi.xssm.common.PageResult;
+import com.xuebusi.xssm.common.util.ApplicationContextUtil;
 import com.xuebusi.xssm.core.log.LogManager;
 import com.xuebusi.xssm.core.log.LogTaskFactory;
 import com.xuebusi.xssm.dto.UserDto;
@@ -8,11 +10,15 @@ import com.xuebusi.xssm.pojo.XUser;
 import com.xuebusi.xssm.pojo.XUserExample;
 import com.xuebusi.xssm.service.XUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Future;
 
 /**
  * Created by 学布斯 on 2017/12/18.
@@ -150,5 +156,35 @@ public class XUserController extends BaseController {
         TimerTask logTask = LogTaskFactory.testLog(Integer.valueOf(userId));
         LogManager.me().executor(logTask);
         return "success";
+    }
+
+    /**
+     * 测试Spring线程池
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "testThreadPoolTaskExecutor")
+    @ResponseBody
+    public List<XUser> testThreadPoolTaskExecutor(@RequestParam(value = "id") String id) {
+        try {
+            final Integer userId = Integer.valueOf(id);
+            ApplicationContext applicationContext = ApplicationContextUtil.getApplicationContext();
+            ThreadPoolTaskExecutor executor = applicationContext.getBean(ThreadPoolTaskExecutor.class);
+            Future<List<XUser>> submit = executor.submit(new Callable<List<XUser>>() {
+                @Override
+                public List<XUser> call() throws Exception {
+                    XUserExample example = new XUserExample();
+                    example.createCriteria().andIdEqualTo(userId);
+                    List<XUser> userList = userService.selectByExample(example);
+                    System.out.println(JSON.toJSONString(userList));
+                    return userList;
+                }
+            });
+            List<XUser> userList = submit.get();
+            return userList;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

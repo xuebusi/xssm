@@ -5,7 +5,6 @@ import com.xuebusi.xssm.common.PageResult;
 import com.xuebusi.xssm.dto.UserDto;
 import com.xuebusi.xssm.pojo.XUser;
 import com.xuebusi.xssm.pojo.XUserExample;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
