@@ -24,7 +24,7 @@ public class RSAController {
      */
     @RequestMapping("getPublicKey")
     public String getPublicKey() {
-        return RSAEncryption.getPublicKey();
+        return RSAEncryption.getPublicKeyString();
     }
 
     /**
@@ -35,12 +35,14 @@ public class RSAController {
      */
     @RequestMapping("decryptByPriKey")
     public String decryptByPriKey(@RequestParam("password") String password) {
+        System.out.println("=============加密前:" + password);
         try {
             // 使用公钥加密数据
-            String encryData = RSAEncryption.encryptByPubKey2(password);
+            String encryData = RSAEncryption.encryptByPubKey(password);
+            System.out.println("=============加密后:" + encryData);
             // 使用私钥解密数据
-            String decryData = RSAEncryption.decryptByPriKey2(encryData);
-            System.out.println("=============解密:" + decryData);
+            String decryData = RSAEncryption.decryptByPriKey(encryData);
+            System.out.println("=============解密后:" + decryData);
             return decryData;
         } catch (Exception e) {
             e.printStackTrace();
