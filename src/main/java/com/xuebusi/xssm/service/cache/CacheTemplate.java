@@ -23,23 +23,24 @@ public class CacheTemplate {
     private RedisService redisService;
 
     public <T> T findCache(String key, TypeReference<T> clazz, CacheLoadable<T> cacheLoadable) {
+        T result;
         // 查缓存
-        T t1 = getDataFromCache(key, clazz);
-        if (t1 != null) {
-            return t1;
+        result = getDataFromCache(key, clazz);
+        if (result != null) {
+            return result;
         }
         synchronized (this) {
             // 查缓存
-            T t2 = getDataFromCache(key, clazz);
-            if (t2 != null) {
-                return t2;
+            result = getDataFromCache(key, clazz);
+            if (result != null) {
+                return result;
             }
             // 查数据库
-            T t3 = cacheLoadable.load();
+            result = cacheLoadable.load();
             System.out.println("=======查询数据库=======");
             // 更新缓存
-            redisService.set(key, JSON.toJSONString(t3));
-            return t3;
+            redisService.set(key, JSON.toJSONString(result));
+            return result;
         }
     }
 
