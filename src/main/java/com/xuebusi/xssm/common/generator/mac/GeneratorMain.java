@@ -1,4 +1,4 @@
-package com.xuebusi.xssm.common.generator;
+package com.xuebusi.xssm.common.generator.mac;
 
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
@@ -22,7 +22,7 @@ public class GeneratorMain {
         List<String> warnings = new ArrayList<>();
         boolean overwrite = true;
         //指定 逆向工程配置文件
-        File configFile = new File("src/main/java/com/xuebusi/xssm/common/generator/generatorConfig.xml");
+        File configFile = new File("/Users/v_shiyanjun/IdeaProjects/xssm/src/main/java/com/xuebusi/xssm/common/generator/generatorConfig.xml");
         ConfigurationParser cp = new ConfigurationParser(warnings);
         Configuration config = cp.parseConfiguration(configFile);
         DefaultShellCallback callback = new DefaultShellCallback(overwrite);
