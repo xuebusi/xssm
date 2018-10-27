@@ -10,7 +10,7 @@ import java.util.Random;
  * @author: shiyanjun
  * @Date: 2018/10/27 下午9:04
  */
-public class GenKaoQin {
+public class GenClock {
 
     private static Random random = new Random();
 
