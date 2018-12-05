@@ -15,7 +15,7 @@ public class GenClock {
     private static Random random = new Random();
 
     public static void main(String[] args) {
-        List<String> list = gen(20, 9, 22, 56, 32, 27, 12);
+        List<String> list = gen(30, 9, 22, 56, 32, 30, 12);
         for (String s : list) {
             System.out.println(s);
         }
