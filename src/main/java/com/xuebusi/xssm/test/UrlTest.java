@@ -14,7 +14,7 @@ public class UrlTest {
 //        System.out.println(hasRequestUrl("/tech/face"));
 //        System.out.println(hasRequestUrl("/event/facefree"));
 //        System.out.println(hasRequestUrl("/event/facesdk-offline"));
-        System.out.println(hasRequestUrl("/event/*"));
+        System.out.println(hasRequestUrl("/tech/face/*"));
     }
 
     /**
@@ -25,7 +25,7 @@ public class UrlTest {
      */
     public static boolean hasRequestUrl(String requestUrl) {
         String[] urls = UrlTest.toFaceUrls.split(",");
-        if (urls.length == 0) {
+        if (urls == null || urls.length == 0) {
             return false;
         }
         String[] formatUrls = removeArrSuffix(urls);
@@ -69,7 +69,7 @@ public class UrlTest {
      * @return
      */
     public static String removeSuffix(String str, String separator) {
-        if (str.endsWith(separator)) {
+        if (str != null && str.endsWith(separator)) {
             str = str.substring(0, str.length() - 1);
         }
         return str;
